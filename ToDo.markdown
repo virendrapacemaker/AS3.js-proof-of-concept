@@ -19,7 +19,7 @@ Create base classes for:
     *   Sprite 
         *   ...and all graphics code to power the drawing
         *   possibly use Raphael.js to do heavy lifting on canvas
-    
+
 Other project related stuff
 
 *   Integrate a testing framework
