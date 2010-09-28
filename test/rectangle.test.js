@@ -15,3 +15,15 @@ console.log(r.toString());
 console.log(inside.toString());
 
 console.log('inside ? ', r.containsRect(inside)), '[expect true]';
+
+console.log('will offset ' + inside.toString() + ' by 10');
+
+inside.offset(10, 10);
+
+console.log('offset  ', inside.toString());
+
+console.log('will offset ' + inside.toString() + ' to {20,20}');
+
+inside.offsetPoint(new Point(20, 20));
+
+console.log('offset  ', inside.toString());
