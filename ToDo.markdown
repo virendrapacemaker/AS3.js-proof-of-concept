@@ -23,6 +23,8 @@ Create base classes for:
 Other project related stuff
 
 *   Integrate a testing framework
+    *   [Wikipedia list of JS Testing Frameworks](http://en.wikipedia.org/wiki/List_of_unit_testing_frameworks#JavaScript)
+    *   [qUnit](http://docs.jquery.com/Qunit)
 *   Create workflow guidelines, codeing standards, etc. Base off of Google Closure Tools
 
 Drawing
