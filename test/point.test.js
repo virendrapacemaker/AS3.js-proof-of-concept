@@ -68,11 +68,10 @@ pta.y = 0;
 ptb.x = -10;
 ptb.y = -10;
 
-console.log('interpolate @ 0.5 : ', 
-    pta.toString(), 
-    ptb.toString(), ' = ', 
+console.log('interpolate @ 0.5 : ',
+    pta.toString(),
+    ptb.toString(), ' = ',
     pta.interpolate(pta, ptb, 0.5).toString());
-
 
 /*
 var pt = new Point(3, 4);
