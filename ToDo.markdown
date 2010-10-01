@@ -36,7 +36,7 @@ Create base classes for:
 
 *   flash.events.
     *   EventDispatcher
-    *   Event
+    *   Event (see Events below)
     *   MouseEvent
     *   KeyboardEvent
 *   flash.geom.
@@ -52,6 +52,14 @@ Create base classes for:
     *   Sprite
         *   ...and all graphics code to power the drawing
         *   possibly use Raphael.js to do heavy lifting on canvas
+
+Events
+------
+
+How do we define the Event constants? The main event class has alot of constants: http://bit.ly/9LkfBS.
+Each class that uses any of them 'knows' which events it implements, such as DisplayObject and
+its list of events. How do we code this? Will it be enough to add to the comments @event, or something
+similar, to let the class and users know that it implements that event?
 
 Other project related stuff
 ---------------------------

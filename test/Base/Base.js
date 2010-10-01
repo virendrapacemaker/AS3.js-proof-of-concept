@@ -12,7 +12,23 @@ var Base = function(x, y) {
 
   // Private attributes
   var x_,
-      y_;
+      y_,
+      param_ = 3;
+
+  // Private method with access to private attributes
+  function getParam() {
+    return param_;
+  }
+
+  // Priveleged method can access the private stuff
+  // Notice we override this in one of the child classes
+  this.doStuff = function(b) {
+    console.log(this);
+    console.log(b);
+    console.log('getParam = ', getParam());
+    console.log('param_ = ', param_);
+  };
+
 
   // Define our getters and setters
   this.addProperties({
@@ -81,14 +97,14 @@ Base.prototype.init = function(x, y) {
  * Classical Inheritance using Crawford's sugar functions
  * http://www.crockford.com/javascript/inheritance.html
  *
- * @this W
+ * @this Child
  *
  * @param {number} x The x.
  * @param {number} y The y.
  * @param {number} w The w.
  * @param {number} h The h.
  */
-function W(x, y, w, h) {
+function Child(x, y, w, h) {
 
   var width_,
       height_;
@@ -117,13 +133,11 @@ function W(x, y, w, h) {
 }
 
 // Inherit from our parent class
-W.inherits(Base);
-
-
+Child.inherits(Base);
 
 // Override the toString function
-W.method('toString', function() {
-  var s = 'W = {x:' + this.x + ', y:' + this.y +
+Child.method('toString', function() {
+  var s = 'Child = {x:' + this.x + ', y:' + this.y +
           ', width:' + this.width +
           ', height:' + this.height +
           ', length:' + this.length + '}';
@@ -132,7 +146,7 @@ W.method('toString', function() {
 
 // Extend the init function.
 // Be sure to call the parent init via uber
-W.method('init', function(x, y, w, h) {
+Child.method('init', function(x, y, w, h) {
   this.uber('init', x, y);
   this.height = h || 0;
   this.width = w || 0;
@@ -156,27 +170,48 @@ W.method('init', function(x, y, w, h) {
  * Classical Inheritance using Crawford's sugar functions
  * http://www.crockford.com/javascript/inheritance.html
  *
- * @this J
+ * @this Child2
  *
  * @param {number} x The x.
  * @param {number} y The y.
  * @param {number} w The w.
  * @param {number} h The h.
  */
-function J(x, y, w, h) {
+function Child2(x, y, w, h) {
 
   var width_,
-      height_;
+      height_,
+      param_ = 9;
+
+  // Priveleged method can access the private stuff
+  // notice that this was defined in Base class, which
+  // we inherit from later. The parent function is
+  // accessed via the .uber() method.
+  this.doStuff = function(b) {
+
+    console.log('------------------\n',
+      'uber.doStuff: ');
+    this.uber('doStuff', b);
+    console.log('------------------');
+
+    console.log('My doStuff:');
+    console.log('this: ', this);
+    console.log('input param: ', b);
+    console.log('param_ = ', param_);
+    console.log('width: ', this.width);
+
+    console.log('------------------');
+  };
 
   this.init(x, y, w, h);
 
 }
 
 // Inherit from our parent class
-J.inherits(Base);
+Child2.inherits(Base);
 
 // Add all getter/setter properties
-J.addProperties({
+Child2.addProperties({
   width: {
     get: function() {
       return width_;
@@ -196,8 +231,8 @@ J.addProperties({
 });
 
 // Override the toString function
-J.method('toString', function() {
-  var s = 'J = {x:' + this.x + ', y:' + this.y +
+Child2.method('toString', function() {
+  var s = 'Child2 = {x:' + this.x + ', y:' + this.y +
           ', width:' + this.width +
           ', height:' + this.height +
           ', length:' + this.length + '}';
@@ -206,7 +241,7 @@ J.method('toString', function() {
 
 // Extend the init function.
 // Be sure to call the parent init via uber
-J.method('init', function(x, y, w, h) {
+Child2.method('init', function(x, y, w, h) {
   this.uber('init', x, y);
   this.height = h || 0;
   this.width = w || 0;
