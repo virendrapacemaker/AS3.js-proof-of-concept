@@ -9,31 +9,6 @@ To Do
     *   How we define our classes and perform inheritance
 *   Clean up and clarify goals of project
 
-Namespacing
------------
-
-See the [Adobe Docs](http://help.adobe.com/en_US/ActionScript/3.0_ProgrammingAS3/WS5b3ccc516d4fbf351e63e3d118a9b90204-7f9e.html) for info on packaging/namespacing
-
-Namespace all Classes inside their respective AS3 path, e.g.
-
-    flash.js // wrapper object
-    flash.display.js // wrapper object
-    flash.display.Sprite.js // contains Graphics class
-
-When defining a class alias it to a global of the class name, e.g.
-
-    flash.display.Sprite = Sprite = function() {...}
-
-This enables us to follow the AS3 shortcuts of using:
-
-    var s = new Sprite();
-    
-Instead of:
-
-    var s = new flash.display.Sprite();
-
-Both are legal it AS3, so we make both awailable in this project.
-
 Classes
 -------
 
@@ -72,7 +47,6 @@ Other project related stuff
 *   Integrate a testing framework
     *   [Wikipedia list of JS Testing Frameworks](http://en.wikipedia.org/wiki/List_of_unit_testing_frameworks#JavaScript)
     *   [qUnit](http://docs.jquery.com/Qunit)
-*   Create workflow guidelines, codeing standards, etc. Base off of Google Closure Tools
 
 Drawing
 -------
