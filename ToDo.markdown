@@ -1,33 +1,38 @@
 To Do
 =====
 
+*   Document how to install Flex and compile the ActionScript 3 sample code
+*   Write post about the Base class.
+    *   post Base class and samples to github
+*   Write standards descriptions:
+    *   How we write our code
+    *   How we define our classes and perform inheritance
+*   Clean up and clarify goals of project
+
 Namespacing
 -----------
 
 See the [Adobe Docs](http://help.adobe.com/en_US/ActionScript/3.0_ProgrammingAS3/WS5b3ccc516d4fbf351e63e3d118a9b90204-7f9e.html) for info on packaging/namespacing
 
-Mozilla's [Javascript Packages](http://www.mozilla.org/js/simple-packages.html)?
+Namespace all Classes inside their respective AS3 path, e.g.
 
-Develop the namespace structure, such as
+    flash.js // wrapper object
+    flash.display.js // wrapper object
+    flash.display.Sprite.js // contains Graphics class
 
-    as3.js // main namespace
-    as3.flash.js // wrapper object
-    as3.flash.display.js // wrapper object
-    as3.flash.display.Graphics.js // contains Graphics class
+When defining a class alias it to a global of the class name, e.g.
 
-When doing this, how can we say
+    flash.display.Sprite = Sprite = function() {...}
 
-    var p = new Point(x, y);
+This enables us to follow the AS3 shortcuts of using:
 
-when point in defined in as3.flash.geom.Point ? Will we need to say
+    var s = new Sprite();
+    
+Instead of:
 
-    var p = new as3.flash.geom.Point(x, y);
+    var s = new flash.display.Sprite();
 
-If so, will creating global links to these constructors work?
-
-    var Point = as3.flash.geom.Point;
-    ...
-    var p = new Point(x, y);
+Both are legal it AS3, so we make both awailable in this project.
 
 Classes
 -------
