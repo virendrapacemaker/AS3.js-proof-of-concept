@@ -1,14 +1,6 @@
 To Do
 =====
 
-*   Document how to install Flex and compile the ActionScript 3 sample code
-*   Write post about the Base class.
-    *   post Base class and samples to github
-*   Write standards descriptions:
-    *   How we write our code
-    *   How we define our classes and perform inheritance
-*   Clean up and clarify goals of project
-
 Classes
 -------
 
