@@ -25,14 +25,6 @@ Create base classes for:
         *   ...and all graphics code to power the drawing
         *   possibly use Raphael.js to do heavy lifting on canvas
 
-Events
-------
-
-How do we define the Event constants? The main event class has alot of constants: http://bit.ly/9LkfBS.
-Each class that uses any of them 'knows' which events it implements, such as DisplayObject and
-its list of events. How do we code this? Will it be enough to add to the comments @event, or something
-similar, to let the class and users know that it implements that event?
-
 Other project related stuff
 ---------------------------
 
@@ -42,6 +34,13 @@ Other project related stuff
 
 Drawing
 -------
+
+*   Look into canvas wrappers, such as Raphael.js, [Canto.js](http://code.google.com/p/canto-js/)
+    *   These will work for drawing into the canvas, but my research shows that
+        the canvas does not support layers or groups, so we'll have to create
+        that somehow. Maybe [layering canvas elements](http://stackoverflow.com/questions/3008635/html5-canvas-element-multiple-layers/3008863#3008863)?
+        That's what [Collage.js does](http://radikalfx.com/files/collage/jcollage.js) in
+        the [collage demo](http://radikalfx.com/2009/10/16/canvas-collage/).
 
 *   Install Flex tools for compiling ActionScript 3
     *   [instructions to install the command-line Flex tools on Ubuntu](http://stevelove.org/2009/05/14/how-to-install-and-set-up-adobe-flex-sdk-on-ubuntu-linux/)

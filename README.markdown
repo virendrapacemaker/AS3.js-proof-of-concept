@@ -45,7 +45,7 @@ Namespace all Classes inside their respective AS3 path, e.g.
 
     flash.js // wrapper object
     flash.display.js // wrapper object
-    flash.display.Sprite.js // contains Graphics class
+    flash.display.Sprite.js // contains Sprite class definition
 
 When defining a class alias it to a global of the class name, e.g.
 
@@ -54,7 +54,7 @@ When defining a class alias it to a global of the class name, e.g.
 This enables us to follow the AS3 shortcuts of using:
 
     var s = new Sprite();
-    
+
 Instead of:
 
     var s = new flash.display.Sprite();
