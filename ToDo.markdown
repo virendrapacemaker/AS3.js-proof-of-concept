@@ -41,6 +41,8 @@ Drawing
         that somehow. Maybe [layering canvas elements](http://stackoverflow.com/questions/3008635/html5-canvas-element-multiple-layers/3008863#3008863)?
         That's what [Collage.js does](http://radikalfx.com/files/collage/jcollage.js) in
         the [collage demo](http://radikalfx.com/2009/10/16/canvas-collage/).
+    *   [Artisan.js](http://artisanjs.com/) supports [layers](http://www.luzcannon.com/article/layers-artisan-js).
+        We could use Artisan, or at least [learn from it's code](http://github.com/davidbrooks/Artisan).
 
 *   Install Flex tools for compiling ActionScript 3
     *   [instructions to install the command-line Flex tools on Ubuntu](http://stevelove.org/2009/05/14/how-to-install-and-set-up-adobe-flex-sdk-on-ubuntu-linux/)
