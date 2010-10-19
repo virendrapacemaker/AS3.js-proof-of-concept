@@ -5,7 +5,7 @@ Inception
 ---------
 
 This project started as a curiosity of Jon Beebe, wondering if it'd be possible
-to port ActionScript 3 classes to JavaScript so that AS3 code could run natively
+to port the ActionScript 3 api to JavaScript so that AS3 code could run natively
 in Javascript.
 
 Proof-of-concept
@@ -19,13 +19,25 @@ code, with minimal alterations, in an HTML5 page. I must be able to:
     it with a color and stroke.
 *   Process basic events, such as mouse and keyboard events
 
+Intermetiate-goal
+-----------------
+
+Port all core display classes*: http://www.adobe.com/livedocs/flash/9.0/main/wwhelp/wwhimpl/common/html/wwhelp.htm?context=LiveDocs_Parts&file=00000143.html
+
+*with the exception possibly being the legacy AVM1Movie class.
+
+End-goal
+--------
+
+Port the entire AS3 api to JavaScript.
+
 Testing
 =======
 
 The barrier to entry for contributors needs to be low. As such it will not be
 necessary to own the Flash or Flex IDE to code or run the AS3 samples.
 
-See the ReadMe in the as3 folder for more on the ActionScript 3 examples.
+See the ReadMe in the /as3 folder for more on the ActionScript 3 examples.
 
 Coding Standards
 ================
