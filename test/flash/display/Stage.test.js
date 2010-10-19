@@ -43,5 +43,15 @@ function init() {
   console.log('Stage.height = ' + S.height);
   S.height = 200;
   console.log('Stage.height = ' + S.height);
+  
+  S.align = StageAlign.TOP_LEFT;
+  S.displayState = StageDisplayState.NORMAL;
+  S.frameRate = 30;
+  S.quality = StageQuality.HIGH;
+  S.scaleMode = StageScaleMode.NO_SCALE;
+  //S.showDefaultContextMenu = false;
+  
+  console.log('Stage object: ', S);
+  
 
 }
