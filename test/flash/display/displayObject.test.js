@@ -18,6 +18,22 @@ console.log('Created: ', shape.toString(), shape);
 console.log('----------------------------------------------');
 
 
+var shape2 = new Shape();
+console.log('Created: ', shape2.toString(), shape2);
+
+shape2.x = 50;
+shape2.y = 90;
+shape2.width = 160;
+shape2.height = 100;
+shape2.alpha = 0.5;
+
+console.log('Created: ', shape2.toString(), shape2);
+console.log('Other: ', shape.toString(), shape);
+
+
+console.log('----------------------------------------------');
+
+
 var sprite = new Sprite();
 console.log('Created: ', sprite.toString(), sprite);
 
@@ -28,4 +44,19 @@ console.log('Created: ', sprite.toString(), sprite);
 
 
 console.log('----------------------------------------------');
+
+
+
+console.log('adding child to sprite: ', sprite.addChild(shape));
+
+console.log('adding child to sprite: ', sprite.addChild(shape2));
+
+var shape3 = new Shape();
+console.log(shape3);
+
+console.log('adding child to sprite: ', sprite.addChild(shape3));
+console.log('Sprite now has ' + sprite.numChildren + ' children');
+console.log('Sprite.toString:');
+console.log(sprite.toString());
+
 
