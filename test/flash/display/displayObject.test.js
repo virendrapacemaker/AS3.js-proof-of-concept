@@ -21,11 +21,8 @@ console.log('----------------------------------------------');
 var shape2 = new Shape();
 console.log('Created: ', shape2.toString(), shape2);
 
-shape2.x = 50;
-shape2.y = 90;
-shape2.width = 160;
-shape2.height = 100;
-shape2.alpha = 0.5;
+shape2.x = 100;
+shape2.y = 100;
 
 console.log('Created: ', shape2.toString(), shape2);
 console.log('Other: ', shape.toString(), shape);
