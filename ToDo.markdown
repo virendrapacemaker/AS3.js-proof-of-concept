@@ -1,5 +1,13 @@
 To Do
 =====
+
+Jon Beebe
+---------
+
+1.  Finish the Stage and DisplayObjectContainer display list management.
+2.  Flesh out the basic graphics class so we can test drawing.
+3.  Add a few Sprites/Shapes to the Stage and see what happens.
+4.  Assuming that works, add events to Sprites & Stage...see what happens.
  
 Classes
 -------

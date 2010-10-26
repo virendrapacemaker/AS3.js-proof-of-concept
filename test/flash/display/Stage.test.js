@@ -7,7 +7,7 @@ window.onload = function() {
   console.log('window.onload');
   //setTimeout(init, 500);
   init();
-}
+};
 
 function init() {
 
