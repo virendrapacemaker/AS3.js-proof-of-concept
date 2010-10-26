@@ -12,101 +12,53 @@ function init() {
   // This object is going to be the target of our events.
   // Demonstrates that event listeners are scoped to the target object.
   var o = {
-    
     name : 'Jon Beebe' // some random object
-    
   };
-  
-  
-  
   
   // This represents any object we have performing events and dispatching them
   var dispatcher = new EventDispatcher(o);
-  
-  // Specifically wire up our canvas element
-  // We will translate these events into AS3 events
-  var canvas = document.getElementById('myCanvas');
-  var canvasDispatcher = new EventDispatcher(canvas);
-  
-  
-  
   
   // This represents any object that we might want to have listen to events
   var listener = {
     
     onMouseDown : function(event) {
       
-      console.log('listener called! this = ', this, 'event: ', event.toString());
+      console.log('listener called! this: ', this, 'event: ', event.toString());
       
     },
     
     onMouseMove : function(event) {
       
-      console.log('listener called! this = ', this, 'event: ', event.toString());
+      console.log('listener called! this: ', this, 'event: ', event.toString());
       
     },
     
     onMouseUp : function(event) {
       
-      console.log('listener called! this = ', this, 'event: ', event.toString());
+      console.log('listener called! this: ', this, 'event: ', event.toString());
       
     },
     
     onSquish : function(event) {
       
-      console.log('listener called! this = ', this, 'event: ', event.toString());
+      console.log('listener called! this: ', this, 'event: ', event.toString());
       
     }
     
   };
-  
-  
-  
-  
-  var canvasListener = {
-    
-    onMouseDown : function(event) {
-      
-      console.log('listener called! this = ', this, 'event: ', event.toString());
-      
-    },
-    
-    onMouseMove : function(event) {
-      
-      console.log('listener called! this = ', this, 'event: ', event.toString());
-      
-    },
-    
-    onMouseUp : function(event) {
-      
-      console.log('listener called! this = ', this, 'event: ', event.toString());
-      
-    }
-    
-  };
-  
-  
-  
   
   // Wire up our listener object to the events of the dispatcher object
   dispatcher.addEventlistener('squish', listener.onSquish);
-  
   dispatcher.addEventlistener(MouseEvent.MOUSE_DOWN, listener.onMouseDown);
-  
   dispatcher.addEventlistener(MouseEvent.MOUSE_MOVE, listener.onMouseMove);
   
-  // Wire up listeners to our canvas element
-  canvasDispatcher.addEventlistener(MouseEvent.MOUSE_DOWN, canvasListener.onMouseDown);
-  
-  canvasDispatcher.addEventlistener(MouseEvent.MOUSE_MOVE, canvasListener.onMouseMove);
-  
-  
-  
-  
+  // For this test let's tie up a real object in the dom to these events.
+  // This will eventually be a display object on the stage.
+  // For now simply translate a dom event to a custom MouseEvent object.
   var target = document.getElementById('someDiv');
   
   target.onmousedown = function(event) {
-    console.log(event);
+    //console.log(event);
     dispatcher.dispatchEvent(buildMouseEvent(event, MouseEvent.MOUSE_DOWN));
   };
   
@@ -114,14 +66,60 @@ function init() {
     //console.log(event);
     dispatcher.dispatchEvent(buildMouseEvent(event, MouseEvent.MOUSE_MOVE));
   };
+
+  
+  
+
+////////////////////////////////////////////////////////////////////////////////
   
   
   
   
+  // Create a canvas element as our event dispatcher
+  var canvas = document.getElementById('myCanvas');
+  var canvasDispatcher = new EventDispatcher(canvas);
+  
+  // Create a lister object that wants to know about canvas events
+  var canvasListener = {
+    
+    onMouseDown : function(event) {
+      
+      console.log('listener called! this: ', this, 'event: ', event.toString());
+      
+    },
+    
+    onMouseMove : function(event) {
+      
+      console.log('listener called! this: ', this, 'event: ', event.toString());
+      
+    },
+    
+    onMouseUp : function(event) {
+      
+      console.log('listener called! this: ', this, 'event: ', event.toString());
+      
+    }
+    
+  };
+  
+  // Wire up listeners to our canvas element
+  canvasDispatcher.addEventlistener(
+      MouseEvent.MOUSE_DOWN, 
+      canvasListener.onMouseDown
+  );
+  canvasDispatcher.addEventlistener(
+      MouseEvent.MOUSE_MOVE, 
+      canvasListener.onMouseMove
+  );
+  
+  // For this test we will listen to events from a canvas element in the dom
+  // and translate them to our custom MouseEvent objects.
   canvas.addEventListener(
     'mousemove',
     function(event) {
-      canvasDispatcher.dispatchEvent(buildMouseEvent(event, MouseEvent.MOUSE_MOVE));
+      canvasDispatcher.dispatchEvent(
+          buildMouseEvent(event, MouseEvent.MOUSE_MOVE)
+      );
     },
     false
   );
@@ -129,10 +127,13 @@ function init() {
   canvas.addEventListener(
     'mousedown',
     function(event) {
-      canvasDispatcher.dispatchEvent(buildMouseEvent(event, MouseEvent.MOUSE_DOWN));
+      canvasDispatcher.dispatchEvent(
+          buildMouseEvent(event, MouseEvent.MOUSE_DOWN)
+      );
     },
     false
   );
+  
   
   
   
@@ -145,6 +146,15 @@ function init() {
 
 
 
+/**
+ * A convenience function for translating DOM mouse events into local mouse
+ * events. All coordinates need to be local to the element, so 0,0 is
+ * at the upper-left corner of the element.
+ * 
+ * @param {event} e The event to translate.
+ * @param {string} type The event type.
+ * @return {MouseEvent} The localized mouse event.
+ */
 function buildMouseEvent(e, type) {
   
   return new MouseEvent(
@@ -171,6 +181,13 @@ function buildMouseEvent(e, type) {
 // All AS3 Mouse Events are relative to the element generating them, so x/y
 // will need to be relative to the top/left corner of the element, NOT the
 // top/left corner of the window or the parent element.
+
+/**
+ * Fix the coordinate value so zero is upper/left of local coordinate space.
+ * 
+ * @param {event} e The event to inspect.
+ * @return {int} The fixed x coordinate value.
+ */
 function getMouseX(e) {
   if(e.offsetX) {
     return e.offsetX;
@@ -180,6 +197,12 @@ function getMouseX(e) {
   }
 }
 
+/**
+ * Fix the coordinate value so zero is upper/left of local coordinate space.
+ * 
+ * @param {event} e The event to inspect.
+ * @return {int} The fixed y coordinate value.
+ */
 function getMouseY(e) {
   if(e.offsetY) {
     return e.offsetY;

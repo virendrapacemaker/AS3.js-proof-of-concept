@@ -38,6 +38,28 @@ sprite.x = 50;
 sprite.y = 90;
 
 console.log('Created: ', sprite.toString(), sprite);
+console.log('Sprite now has ' + sprite.numChildren + ' children');
+
+
+console.log('----------------------------------------------');
+
+
+
+var sprite2 = new Sprite();
+sprite2.x = 99;
+sprite2.y = 99;
+sprite2.width = 10;
+sprite2.height = 10;
+
+console.log('Created: ', sprite2.toString(), sprite2);
+console.log('Sprite2 now has ' + sprite2.numChildren + ' children');
+
+
+console.log('----------------------------------------------');
+
+console.log('Do the display lists equal eachother?');
+console.log('==', sprite2.displayList_ == sprite.displayList_);
+console.log('===', sprite2.displayList_ === sprite.displayList_);
 
 
 console.log('----------------------------------------------');
@@ -49,12 +71,30 @@ console.log('adding child to sprite: ', sprite.addChild(shape));
 console.log('adding child to sprite: ', sprite.addChild(shape2));
 
 var shape3 = new Shape();
-console.log(shape3);
+console.log('Created: ', shape3);
 
 console.log('adding child to sprite: ', sprite.addChild(shape3));
 console.log('Sprite now has ' + sprite.numChildren + ' children');
 console.log('Sprite.toString:');
-console.log(sprite);
 console.log(sprite.toString());
 
+
+console.log('----------------------------------------------');
+
+
+var shape4 = new Shape();
+console.log('Created: ', shape4.toString(), shape4);
+
+shape4.x = 100;
+shape4.y = 100;
+
+console.log('adding child to sprite: ', sprite2.addChild(shape4));
+
+
+console.log('----------------------------------------------');
+
+console.log('adding child to sprite: ', sprite.addChild(sprite2));
+console.log('Sprite now has ' + sprite.numChildren + ' children');
+console.log('Sprite.toString:');
+console.log(sprite.toString());
 
