@@ -98,3 +98,19 @@ console.log('Sprite now has ' + sprite.numChildren + ' children');
 console.log('Sprite.toString:');
 console.log(sprite.toString());
 
+
+console.log('----------------------------------------------');
+
+console.log('instanceof tests...');
+
+console.log('Sprite instanceof Sprite? ', sprite instanceof Sprite);
+console.log('Sprite instanceof DisplayObject? ', sprite instanceof DisplayObject);
+console.log('Sprite instanceof EventDispatcher? ', sprite instanceof EventDispatcher);
+
+console.log('Shape instanceof Sprite? ', shape instanceof Sprite);
+console.log('Shape instanceof DisplayObject? ', shape instanceof DisplayObject);
+console.log('Shape instanceof EventDispatcher? ', shape instanceof EventDispatcher);
+
+
+
+
