@@ -54,6 +54,7 @@ console.log(shape3);
 console.log('adding child to sprite: ', sprite.addChild(shape3));
 console.log('Sprite now has ' + sprite.numChildren + ' children');
 console.log('Sprite.toString:');
+console.log(sprite);
 console.log(sprite.toString());
 
 
