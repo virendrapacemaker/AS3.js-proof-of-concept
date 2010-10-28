@@ -105,15 +105,15 @@ function init() {
 
   trace('Will swap children...');
 
-  trace('Display List before: ', S.displayList_);
+  trace('Display List before: ', S.displayListToString());
 
   S.swapChildren(S.getChildByName('Ken'), S.getChildByName('Barbie'));
 
-  trace(S.displayList_);
+  trace(S.displayListToString());
 
   S.swapChildrenAt(0,1);
 
-  trace(S.displayList_);
+  trace(S.displayListToString());
 
   trace('----------------------------------------------');
 
