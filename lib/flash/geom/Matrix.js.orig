@@ -184,14 +184,7 @@ Matrix.prototype.concat = function(m) {
  *
  * @return void
  */
-Matrix.prototype.createBox = function(scaleX, scaleY, rotation, tx, ty){
-
-	this.identity();
-	this.rotate(rotation);
-	this.scale(scaleX, scaleY);
-	this.translate(tx, ty);
-
-};
+Matrix.prototype.createBox = function(scaleX, scaleY, rotation, tx, ty){};
 
 /**
  * Creates the specific style of matrix expected by the beginGradientFill() and
@@ -209,11 +202,7 @@ Matrix.prototype.createBox = function(scaleX, scaleY, rotation, tx, ty){
  *
  * @return void
  */
-Matrix.prototype.createGradientBox = function(width, height, rotation, tx, ty){
-
-	// does the graphics class have to be finished first?  thinking yes.
-
-};
+Matrix.prototype.createGradientBox = function(width, height, rotation, tx, ty){};
 
 /**
  * Given a point in the pretransform coordinate space, returns the coordinates
@@ -226,19 +215,7 @@ Matrix.prototype.createGradientBox = function(width, height, rotation, tx, ty){
  *
  * @return {Point}
  */
-Matrix.prototype.deltaTransformPoint = function(point){
-
-  var point = {
-	  x : ( (this.a * point.x) +
-            (this.c * point.y) ),
-      y : ( (this.b * point.x) +
-			(this.d * point.y) )
-	};
-
-  return new Point(point.x, point.y);
-
-
-};
+Matrix.prototype.deltaTransformPoint = function(point){};
 
 /**
  * Sets each matrix property to a value that causes a null transformation.
@@ -275,7 +252,7 @@ Matrix.prototype.identity = function(){
  * @return void
  */
 Matrix.prototype.invert = function(){
-  // AA-1 = A-1A = I
+
   // Flash Matrix -> Wikipedia Matrix -> Inverted Matrix
   // a c tx       -> a b c            -> A D G
   // b d ty       -> d e f            -> B E H
@@ -360,8 +337,6 @@ Matrix.prototype.toString = function(){
  * Returns the result of applying the geometric transformation represented by
  * the Matrix object to the specified point. transformPoint(point:Point):Point
  *
- * Converts a local point to a world (matrix) point.
- *
  * @link {http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/geom/Matrix.html#transformPoint()}
  *
  * @param {Point} point
@@ -371,18 +346,8 @@ Matrix.prototype.toString = function(){
  */
 Matrix.prototype.transformPoint = function(point){
 
-  // WARNING: DOUBLE CHECK MATH!!  been awhile since knocking these out
-  // in my linear algebra class
-  var point = {
-	  x : ( (this.a * point.x) +
-          (this.c * point.y) +
-          (this.tx) ),
-    y : ( (this.b * point.x) +
-			    (this.d * point.y) +
-			    (this.ty) )
-	};
-
-  return new Point(point.x, point.y);
+  // Treat the point as a 1x3 matrix, [x,y,1] and multiply
+  // TODO: Matrix.transformPoint
 
 };
 
@@ -398,10 +363,10 @@ Matrix.prototype.transformPoint = function(point){
  * @return void
  *
  */
-Matrix.prototype.translate = function(dx, dy){
+Matrix.prototype.translate = function(point){
 
-  this.tx += dx;
-  this.ty += dy;
+  this.tx += point.x;
+  this.ty += point.y;
 
 };
-
+>>>>>>> 16a82811df2a7203aefc798edf3a3997936304a4
