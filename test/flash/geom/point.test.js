@@ -1,92 +1,94 @@
 
-var pt = new Point(3, 4);
 
-console.log("Created point: ", pt.toString());
 
-console.log("set x = 40: ", pt.x = 40);
-console.log("set y = 30: ", pt.y = 30);
 
-console.log("result from setting: ", pt.toString());
+module("Empty Point Initialization Test");
 
-console.log("get length: ", pt.length);
+test("Default values", function(){
+  var pt = new Point();
+  expect(2);
+  equals(pt.x, 0, 'empty initialization, y should be 0');
+  equals(pt.y, 0, 'empty initialization, y should be 0');
+});
 
-try {
-    console.log("set length: ", pt.length = 90);
-}
-catch(e) {
-    console.log('error setting length! ', e);
-}
 
-console.log("result from setting: ", pt.toString());
+test("toString print out", function(){
+  var pt = new Point();
+  expect(1);
+  equals( pt.toString(), "{x:0, y:0, length:0}", "toString method on empty point.");
 
-console.log('adding {10, 10}: ', pt = pt.add(new Point(10, 10)));
-console.log('subtracting {10, 10}: ', pt = pt.subtract(new Point(10, 10)));
+});
 
-var ptc = pt.clone();
-console.log('cloned pt: ', ptc.toString());
-console.log('add to clone {100, 100}: ', ptc = ptc.add(new Point(100, 100)));
 
-console.log("original point: ", pt.toString());
-console.log("cloned point: ", ptc.toString());
+module("Point methods");
 
-console.log('/////','testing distance', '//////////////////////');
+test("clone", function(){
 
-var pta = new Point(10, 10);
-var ptb = new Point(110, 10);
+  var pt = new Point();
+  var ptc = pt.clone();
 
-var distance = pta.distance(pta, ptb);
+  expect(3);
+  equals( pt.x, ptc.x, "Equals, pt.x === ptc.x" );
+  equals( pt.y, ptc.y, "Equals, pt.y === ptc.y" );
+  ok( pt.equals(ptc), "Equals, pt should === ptc" );
 
-console.log('distance from: ', pta.toString(), ' to: ', ptb.toString(), ' = ', distance);
+});
 
-ptb.x = 10;
-ptb.y = 210;
+test(".length", function(){
 
-var distance = pta.distance(pta, ptb);
+  var pt = new Point(3,4);
 
-console.log('distance from: ', pta.toString(), ' to: ', ptb.toString(), ' = ', distance);
+  expect(1);
+  equals( pt.length, 5, 'Length on {x:3, y:4}' );
 
-console.log('/////','testing equality', '//////////////////////');
+});
 
-pta.x = ptb.x = 20;
-pta.y = ptb.y = 50;
+test("distance", function(){
 
-console.log('does ', pta.toString(), ' === ', ptb.toString(), ' ? ', pta.equals(ptb));
+  var pt = new Point(3,4);
 
-ptb.y = 77;
+  expect(1);
+  equals( pt.distance(pt, new Point()), pt.length, 'Test distance from {0,0} to {3,4}' );
 
-console.log('does ', pta.toString(), ' === ', ptb.toString(), ' ? ', pta.equals(ptb));
+});
 
-console.log('/////','testing point.polar()', '//////////////////////');
+test("add", function(){
 
-console.log('cartesian point for r=2, angle=90 degrees : ', ptb.polar(2, 90 * (Math.PI/(180))).toString());
+  var pt1 = new Point(3,4),
+      pt2 = new Point(3,4),
+      pt3 = null,
+      pt4 = new Point(6,8);
 
-console.log('/////','testing point.interpolate()', '//////////////////////');
+  pt3 = pt1.add(pt2);
 
-pta.x = 0;
-pta.y = 0;
+  expect(4);
+  equals( pt1.x + pt2.x, pt3.x, 'pt1.x + pt2.x = pt3.x' );
+  equals( pt1.y + pt2.y, pt3.y, 'pt1.y + pt2.y = pt3.y' );
+  equals( pt1.length + pt2.length, pt3.length, 'pt1.length + pt2.length = pt3.length' );
+  ok( pt3.equals(pt4), 'pt3 equals {x:6, y:8}' );
 
-ptb.x = -10;
-ptb.y = -10;
+});
 
-console.log('interpolate @ 0.5 : ',
-    pta.toString(),
-    ptb.toString(), ' = ',
-    pta.interpolate(pta, ptb, 0.5).toString());
+test("offset", function(){
 
-/*
-var pt = new Point(3, 4);
-console.log("created point:", pt.toString());
-console.log("length:", pt.len);
+  var pt = new Point(10,10);
+  pt.offset(100,100);
+  expect(2);
+  equals(pt.x, 110, 'Added 100 to x');
+  equals(pt.y, 110, 'Added 100 to y');
 
-pt = pt.add( new Point(3, 4) );
-console.log('after adding:', pt.toString());
+});
 
-pt = pt.subtract( new Point(3, 4) );
-console.log('after subtracting:', pt.toString());
+test("interpolate @ 0.5", function(){
 
-var d = pt.distance( new Point(1, 5), new Point(11, 5) );
-console.log('calculated distance:', d);
+  var pta = new Point(),
+      ptb = new Point(-10,-10),
+      ptc = null;
 
-console.log('Test equality. Expect true:', pt.equals(new Point(3, 4)));
-console.log('Test equality. Expect false:', pt.equals(new Point(33, 49)));
-*/
+  ptc = pta.interpolate(pta, ptb, 0.5);
+
+  expect(2);
+  equals(ptc.x, -5, 'pt.x interpolated at 1/2');
+  equals(ptc.y, -5, 'pt.y interpolated at 1/2');
+
+});

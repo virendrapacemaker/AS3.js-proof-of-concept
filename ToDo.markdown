@@ -1,13 +1,10 @@
 To Do
 =====
 
-Jon Beebe
----------
-
-1.  Finish the Stage and DisplayObjectContainer display list management.
-2.  Flesh out the basic graphics class so we can test drawing.
-3.  Add a few Sprites/Shapes to the Stage and see what happens.
-4.  Assuming that works, add events to Sprites & Stage...see what happens.
+*   Finish the Stage and DisplayObjectContainer display list management.
+*   Flesh out the basic graphics class for drawing fills and strokes.
+*   Create a method of instantiating a 'swf' in the dom.
+*   Create the Timeline management code for looping by frames/sec (see below.)
  
 Classes
 -------
@@ -31,7 +28,6 @@ Create base classes for:
     *   DisplayObjectContainer
     *   Sprite
         *   ...and all graphics code to power the drawing
-        *   possibly use Raphael.js to do heavy lifting on canvas
 
 Timeline
 --------
