@@ -92,3 +92,70 @@ test("interpolate @ 0.5", function(){
   equals(ptc.y, -5, 'pt.y interpolated at 1/2');
 
 });
+
+test("normalize", function(){
+
+  var pta = new Point(5,0),
+      ptb = null;
+
+  ptb = pta.normalize(1);
+
+  expect(2);
+  equals(ptb.x, 1, 'pt.x normalized');
+  equals(ptb.y, 0, 'pt.y normalized');
+
+});
+
+test("normalize", function(){
+
+  var pta = new Point(3,4),
+      ptb = null;
+
+  ptb = pta.normalize(2);
+
+  expect(2);
+  equals(ptb.x, 1.2, 'pt.x normalized');
+  equals(ptb.y, 1.6, 'pt.y normalized');
+
+});
+
+
+
+
+
+//-----------------------------------------------------------------------------
+
+
+
+
+
+/**
+ * This is a quick hack to show goog inheritance along with the new
+ * functions to auto-create getters and setters from get* and set*
+ * methods of a class.
+ *
+ * @param x
+ * @param y
+ * @param w
+ */
+Point2 = function(x, y, w) {
+
+  Point.call(this, x, y);
+
+  this.w_ = w || 0;
+
+};
+goog.inherits(Point2, Point);
+
+//Point2.prototype.setW = function(val) {
+//  this.w_ = val;
+//};
+
+Point2.prototype.getW = function() {
+  return this.w_;
+};
+
+_.enhanceWithGettersAndSetters2(Point2.prototype);
+
+//var pt2 = new Point2(10,10, 90);
+//console.log(pt2);
