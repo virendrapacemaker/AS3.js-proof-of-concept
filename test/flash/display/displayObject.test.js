@@ -1,10 +1,10 @@
 
 
-console.log('----------------------------------------------');
+trace('----------------------------------------------');
 
 
 var shape = new Shape();
-console.log('Created: ', shape.toString(), shape);
+trace('Created: ', shape.toString(), shape);
 
 shape.x = 50;
 shape.y = 90;
@@ -12,36 +12,36 @@ shape.width = 160;
 shape.height = 100;
 shape.alpha = 0.5;
 
-console.log('Created: ', shape.toString(), shape);
+trace('Created: ', shape.toString(), shape);
 
 
-console.log('----------------------------------------------');
+trace('----------------------------------------------');
 
 
 var shape2 = new Shape();
-console.log('Created: ', shape2.toString(), shape2);
+trace('Created: ', shape2.toString(), shape2);
 
 shape2.x = 100;
 shape2.y = 100;
 
-console.log('Created: ', shape2.toString(), shape2);
-console.log('Other: ', shape.toString(), shape);
+trace('Created: ', shape2.toString(), shape2);
+trace('Other: ', shape.toString(), shape);
 
 
-console.log('----------------------------------------------');
+trace('----------------------------------------------');
 
 
 var sprite = new Sprite();
-console.log('Created: ', sprite.toString(), sprite);
+trace('Created: ', sprite.toString(), sprite);
 
 sprite.x = 50;
 sprite.y = 90;
 
-console.log('Created: ', sprite.toString(), sprite);
-console.log('Sprite now has ' + sprite.numChildren + ' children');
+trace('Created: ', sprite.toString(), sprite);
+trace('Sprite now has ' + sprite.numChildren + ' children');
 
 
-console.log('----------------------------------------------');
+trace('----------------------------------------------');
 
 
 
@@ -51,65 +51,80 @@ sprite2.y = 99;
 sprite2.width = 10;
 sprite2.height = 10;
 
-console.log('Created: ', sprite2.toString(), sprite2);
-console.log('Sprite2 now has ' + sprite2.numChildren + ' children');
+trace('Created: ', sprite2.toString(), sprite2);
+trace('Sprite2 now has ' + sprite2.numChildren + ' children');
 
 
-console.log('----------------------------------------------');
+trace('----------------------------------------------');
 
-console.log('Do the display lists equal eachother?');
-console.log('==', sprite2.displayList_ == sprite.displayList_);
-console.log('===', sprite2.displayList_ === sprite.displayList_);
-
-
-console.log('----------------------------------------------');
+trace('Do the display lists equal eachother?');
+trace('==', sprite2.displayList_ == sprite.displayList_);
+trace('===', sprite2.displayList_ === sprite.displayList_);
 
 
+trace('----------------------------------------------');
 
-console.log('adding child to sprite: ', sprite.addChild(shape));
 
-console.log('adding child to sprite: ', sprite.addChild(shape2));
+
+trace('adding child to sprite: ', sprite.addChild(shape));
+
+trace('adding child to sprite: ', sprite.addChild(shape2));
 
 var shape3 = new Shape();
-console.log('Created: ', shape3);
+trace('Created: ', shape3);
 
-console.log('adding child to sprite: ', sprite.addChild(shape3));
-console.log('Sprite now has ' + sprite.numChildren + ' children');
-console.log('Sprite.toString:');
-console.log(sprite.toString());
+trace('adding child to sprite: ', sprite.addChild(shape3));
+trace('Sprite now has ' + sprite.numChildren + ' children');
+trace('Sprite.toString:');
+trace(sprite.toString());
 
 
-console.log('----------------------------------------------');
+trace('----------------------------------------------');
 
 
 var shape4 = new Shape();
-console.log('Created: ', shape4.toString(), shape4);
+trace('Created: ', shape4.toString(), shape4);
 
 shape4.x = 100;
 shape4.y = 100;
 
-console.log('adding child to sprite: ', sprite2.addChild(shape4));
+trace('adding child to sprite: ', sprite2.addChild(shape4));
 
 
-console.log('----------------------------------------------');
+trace('----------------------------------------------');
 
-console.log('adding child to sprite: ', sprite.addChild(sprite2));
-console.log('Sprite now has ' + sprite.numChildren + ' children');
-console.log('Sprite.toString:');
-console.log(sprite.toString());
+trace('adding child to sprite: ', sprite.addChild(sprite2));
+trace('Sprite now has ' + sprite.numChildren + ' children');
+trace('Sprite.toString:');
+trace(sprite.toString());
 
 
-console.log('----------------------------------------------');
+trace('----------------------------------------------');
 
-console.log('instanceof tests...');
+trace('instanceof tests...');
 
-console.log('Sprite instanceof Sprite? ', sprite instanceof Sprite);
-console.log('Sprite instanceof DisplayObject? ', sprite instanceof DisplayObject);
-console.log('Sprite instanceof EventDispatcher? ', sprite instanceof EventDispatcher);
+trace('Sprite instanceof Sprite? ', sprite instanceof Sprite);
+trace('Sprite instanceof DisplayObject? ', sprite instanceof DisplayObject);
+trace('Sprite instanceof EventDispatcher? ', sprite instanceof EventDispatcher);
 
-console.log('Shape instanceof Sprite? ', shape instanceof Sprite);
-console.log('Shape instanceof DisplayObject? ', shape instanceof DisplayObject);
-console.log('Shape instanceof EventDispatcher? ', shape instanceof EventDispatcher);
+trace('Shape instanceof Sprite? ', shape instanceof Sprite);
+trace('Shape instanceof DisplayObject? ', shape instanceof DisplayObject);
+trace('Shape instanceof EventDispatcher? ', shape instanceof EventDispatcher);
+
+
+trace('----------------------------------------------');
+
+trace('Transform tests');
+
+trace('Sprite transform: ', sprite.transform);
+trace('Sprite transform matrix: ', sprite.transform.matrix);
+try {
+  trace('Set matrix to null (error) ', sprite.transform.matrix = null);
+}
+catch (e) {
+  trace('Error setting matrix to null: ', e);
+  trace('Stack trace = ', e.getStackTrace(), e.getStackTrace().join("\n\n"));
+}
 
 
 
