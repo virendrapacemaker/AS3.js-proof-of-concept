@@ -5,6 +5,7 @@ To Do
 *   Flesh out the basic graphics class for drawing fills and strokes.
 *   Create a method of instantiating a 'swf' in the dom.
 *   Create the Timeline management code for looping by frames/sec (see below.)
+*   Move all classes over to the `goog.provides`, `goog.requires`, and `goog.exportSymbol` methods, so new classes no longer use `flash.ns.Class = Class = function() {...}`, but instead use `flash.ns.Class = function() {...} ... goog.exportSymbol('Class', flash.ns.Class)`'
  
 Classes
 -------
