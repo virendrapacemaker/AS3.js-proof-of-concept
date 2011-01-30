@@ -38,6 +38,7 @@ The barrier to entry for contributors needs to be low. As such it will not be
 necessary to own the Flash or Flex IDE to code or run the AS3 samples.
 
 See the ReadMe in the /as3 folder for more on the ActionScript 3 examples.
+See the notes on Google Closure below.
 
 Coding Standards
 ================
@@ -75,3 +76,27 @@ Both are legal it AS3, so we make both available in this project.
 
 See the [Adobe Packages & namespaces Docs](http://bit.ly/adobe-as3-pkg-nmspace)
 for info on packaging/namespacing is ActionScript 3
+
+Google Closure
+============
+
+We use Google Closure to provide some basic functionality, such as classes and inheritenc, as well as to compile the project into its final form.
+
+Compiling is demonstrated in the Point demo -- `test/flash/geom/point2.html`.
+
+change to the root of the AS3.js project, and run this command in your terminal:
+
+    ./compile.sh
+
+you should see something like this echoed to the terminal:
+
+    closure-library/closure/bin/build/closurebuilder.py: Scanning paths...
+    closure-library/closure/bin/build/closurebuilder.py: 706 sources scanned.
+    closure-library/closure/bin/build/closurebuilder.py: Building dependency tree..
+    closure-library/closure/bin/build/closurebuilder.py: Compiling with the following command: java -jar compiler.jar --js closure-library/closure/goog/base.js --js lib/support/underscore.js --js lib/support/sugar.js --js lib/flash/flash.js --js lib/flash/geom/geom.js --js lib/flash/geom/Point.js
+    closure-library/closure/bin/build/closurebuilder.py: JavaScript compilation succeeded.
+
+At which point, if you look in the test/flash/geom/ folder you'll see a freshly compiled `point.compiled.js` file.
+
+To compare, load `test/flash/geom/point2.html` and you'll see a similar point demo loading all the files individually.
+
