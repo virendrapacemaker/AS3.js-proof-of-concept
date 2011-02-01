@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Closure Unit Tests - goog.math.Matrix</title>
+<script type="text/javascript" src="../../../closure-library/closure/goog/base.js"></script>
+
+<script type="text/javascript" src="../../../lib/support/underscore.js"></script>
+<script type="text/javascript" src="../../../lib/support/sugar.js"></script>
+
+<script type="text/javascript" src="../../../lib/flash/flash.js"></script>
+<script type="text/javascript" src="../../../lib/flash/geom/geom.js"></script>
+<script type="text/javascript" src="../../../lib/flash/geom/Point.js"></script>
+
+<script type="text/javascript" src="../../../lib/flash/geom/Matrix.js"></script>
+        
+<script>
+  goog.require('goog.testing.jsunit');
+</script>
+</head>
+<body>
+<pre>
+<script>
+
+testDefaultValues = function(){
+  //a:Number = 1, b:Number = 0, c:Number = 0, d:Number = 1, tx:Number = 0, ty:Number = 0
+  var m1 = new Matrix();
+  assertEquals( m1.a, 1);
+  assertEquals( m1.b, 0);
+  assertEquals( m1.c, 0);
+  assertEquals( m1.d, 1);
+  assertEquals( m1.tx, 0);
+  assertEquals( m1.ty, 0);
+};
+
+
+
+
+
+testToString = function(){
+  var m1 = new Matrix();
+  assertEquals( m1.toString(), "1 0 0" + '\n' + "0 1 0");
+};
+
+testInvert =  function(){
+
+  var m1 = new Matrix();
+  var invert = m1.invert();
+  assertEquals( invert.a, 1);
+  assertEquals( invert.b, 0);
+  assertEquals( invert.c, 0);
+  assertEquals( invert.d, 1);
+  assertEquals( invert.tx, 0);
+  assertEquals( invert.ty, 0);
+  assertEquals( invert.toString(), "1 0 0" + '\n' + "0 1 0");
+
+};
+
+
+testConcat = function(){
+
+  var m1 = new Matrix();
+  var m2 = new Matrix();
+  m1.concat(m2);
+  assertEquals( m1.a, 1);
+  assertEquals( m1.b, 0);
+  assertEquals( m1.c, 0);
+  assertEquals( m1.d, 1);
+  assertEquals( m1.tx, 0);
+  assertEquals( m1.ty, 0);
+  assertEquals( m1.toString(), "1 0 0" + '\n' + "0 1 0");
+
+};
+
+
+testrotate = function(){
+
+  var m1 = new Matrix();
+  m1.rotate(1); // rotate via 1
+  assertEquals( m1.a, Math.cos(1));
+  assertEquals( m1.b, Math.sin(1));
+  assertEquals( m1.c, -Math.sin(1));
+  assertEquals( m1.d, Math.cos(1));
+  assertEquals( m1.tx, 0);
+  assertEquals( m1.ty, 0);
+  //assertEquals( m1.toString(), "1 0 0" + '\n' + "0 1 0");
+
+};
+
+
+testscale = function(){
+
+  var m1 = new Matrix();
+  m1.scale(2, 3); // sx = 2, sy = 3
+  assertEquals( m1.a, 2);
+  assertEquals( m1.b, 0);
+  assertEquals( m1.c, 0);
+  assertEquals( m1.d, 3);
+  assertEquals( m1.tx, 0);
+  assertEquals( m1.ty, 0);
+  assertEquals( m1.toString(), "2 0 0" + '\n' + "0 3 0");
+
+};
+
+testIdentity = function(){
+
+  /*
+        this.a = 1;
+      this.b = 0;
+      this.c = 0;
+      this.d = 1;
+      this.tx = 0;
+      this.ty = 0;
+  */
+
+  // the result should just be itself, the same.
+  var m1 = new Matrix();
+  m1.identity();
+  assertEquals( m1.a, 1);
+  assertEquals( m1.b, 0);
+  assertEquals( m1.c, 0);
+  assertEquals( m1.d, 1);
+  assertEquals( m1.tx, 0);
+  assertEquals( m1.ty, 0);
+  assertEquals( m1.toString(), "1 0 0" + '\n' + "0 1 0");
+
+};
+
+
+
+testtransformPoint = function(){
+
+  var p1 = new Point();
+  var m1 = new Matrix();
+  var p2 = m1.transformPoint(p1);
+  assertEquals( p1.x, 0);
+  assertEquals( p1.y, 0);
+  assertEquals( m1.a, 1);
+  assertEquals( m1.b, 0);
+  assertEquals( m1.c, 0);
+  assertEquals( m1.d, 1);
+  assertEquals( m1.tx, 0);
+  assertEquals( m1.ty, 0);
+  assertEquals( m1.toString(), "1 0 0" + '\n' + "0 1 0");
+  assertEquals( p2.x, 0);
+  assertEquals( p2.y, 0);
+
+
+};
+
+// TODO: fix
+/*
+testscale = function(){
+
+  var m1 = new Matrix(10, 20, 30, 40, 50, 60);
+  m1.scale(2, 3); // sx = 2, sy = 3
+  console.log(m1);
+  //expect(7);
+  assertEquals( m1.a, 20, "Scale Matrix(10, 20, 30, 40, 50, 60) matix initialization by (2,3), 'a' should be '20'" );
+  assertEquals( m1.b, 20, "Scale Matrix(10, 20, 30, 40, 50, 60) matix initialization by (2,3), 'b' should be '0'" );
+  assertEquals( m1.c, 30, "Scale Matrix(10, 20, 30, 40, 50, 60) matix initialization by (2,3), 'c' should be '0'" );
+  assertEquals( m1.d, 120, "Scale Matrix(10, 20, 30, 40, 50, 60) matix initialization by (2,3), 'd' should be '120'" );
+  assertEquals( m1.tx, 50, "Scale Matrix(10, 20, 30, 40, 50, 60) matix initialization by (2,3), 'tx' should be '0'" );
+  assertEquals( m1.ty, 60, "Scale Matrix(10, 20, 30, 40, 50, 60) matix initialization by (2,3), 'ty' should be '0'" );
+  assertEquals( m1.toString(), "20 20 30" + '\n' + "120 50 60", "toString method on scaled matrix");
+
+};
+*/
+
+
+testtransformPoint = function(){
+
+  var p1 = new Point(1, 2);
+  var m1 = new Matrix(10, 20, 30, 40, 50, 60);
+  var p2 = m1.transformPoint(p1);
+  assertEquals( p1.x, 1);
+  assertEquals( p1.y, 2);
+  assertEquals( m1.a, 10);
+  assertEquals( m1.b, 20);
+  assertEquals( m1.c, 30);
+  assertEquals( m1.d, 40);
+  assertEquals( m1.tx, 50);
+  assertEquals( m1.ty, 60);
+  assertEquals( p2.x, 120);
+  assertEquals( p2.y, 160);
+
+};
+
+</script>
+
+</body>
+</html>
