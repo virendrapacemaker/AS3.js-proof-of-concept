@@ -3,6 +3,15 @@
 // since there is only one Stage, and it's auto-created
 // when the flash plugin is created.
 
+goog.require('flash.display.StageAlign');
+goog.require('flash.display.StageDisplayState');
+goog.require('flash.display.StageQuality');
+goog.require('flash.display.StageScaleMode');
+
+goog.require('flash.display.Stage');
+goog.require('flash.display.Shape');
+goog.require('flash.display.Sprite');
+        
 window.onload = function() {
   trace('window.onload');
   init();
