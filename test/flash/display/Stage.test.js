@@ -11,11 +11,11 @@ goog.require('flash.display.StageScaleMode');
 goog.require('flash.display.Stage');
 goog.require('flash.display.Shape');
 goog.require('flash.display.Sprite');
-        
-window.onload = function() {
-  trace('window.onload');
-  init();
-};
+
+goog.provide('test.Stage');
+
+init();
+
 
 function init() {
 
