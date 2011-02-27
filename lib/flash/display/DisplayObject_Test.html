@@ -59,6 +59,45 @@
 
       }
 
+      function testAddingDisplayObjectAtIndex() {
+
+        var sprite = new Sprite(),
+            shapeA = new Shape(),
+            shapeB = new Shape(),
+            shapeC = new Shape();
+
+        shapeA.name = 'A';
+        shapeB.name = 'B';
+        shapeC.name = 'C';
+
+        sprite.name = 'Test Sprite';
+
+        sprite.addChild(shapeB);
+        sprite.addChildAt(shapeC, 1);
+        sprite.addChildAt(shapeA, 0);
+
+        // Expect display list to be 
+        // [shapeA, shapeB, shapeC]
+
+        assertEquals(sprite.getChildAt(0), shapeA);
+        assertEquals(sprite.getChildAt(1), shapeB);
+        assertEquals(sprite.getChildAt(2), shapeC);
+
+        try{
+          sprite.addChildAt(shapeA, -5);
+        }
+        catch(e) {
+          assertTrue(e instanceof RangeError);
+        }
+
+        try {
+          sprite.addChildAt(sprite, 5);
+        }
+        catch(e) {
+          assertTrue(e instanceof flash.errors.ArgumentError);
+        }
+      }
+
       function testGetChildByName() {
         
         var sprite = new Sprite(),
