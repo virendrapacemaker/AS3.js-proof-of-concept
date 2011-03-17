@@ -72,13 +72,16 @@
       var child = new Sprite();
       stage.addChild(child);
 
-      child.graphics.lineStyle(5, '#980');
+			/* You should see a squiggly yellow line *without* a fill */
+			child.graphics.beginFill('#000000', 0);
+      child.graphics.lineStyle(5, '#998800');
       child.graphics.moveTo(55, 80);
       child.graphics.lineTo(70, 70);
       child.graphics.lineTo(100, 90);
       child.graphics.lineTo(120, 60);
       child.graphics.lineTo(150, 85);
       child.graphics.lineTo(190, 70);
+      child.graphics.endFill();
 
     }
 
@@ -87,9 +90,14 @@
       var child = new Sprite();
       stage.addChild(child);
 
-      child.graphics.beginFill('#990000');
-      child.graphics.drawCircle(25, 55, 20);
-      child.graphics.endFill();
+			/* You should see an opaque white circle */
+      child.graphics.beginFill('#ffffff');
+      child.graphics.drawCircle(25, 25, 20);
+
+			/* This will be a 50% transparent black circle overlapping
+			   the white circle */
+      child.graphics.beginFill('#000000', 0.5);
+      child.graphics.drawCircle(55, 25, 20);
 
     }
 
@@ -98,9 +106,8 @@
       var child = new Sprite();
       stage.addChild(child);
 
-      child.graphics.lineStyle(null);
-      child.graphics.beginFill('#00cc99');
-      child.graphics.drawRect(5, 5, 40, 20);
+      child.graphics.beginFill('#00cc99', 0.5);
+      child.graphics.drawRect(85, 5, 40, 20);
       child.graphics.endFill();
 
     }
@@ -110,12 +117,13 @@
       var child = new Sprite();
       stage.addChild(child);
 
-      child.graphics.beginFill(0xffffff);
-      child.graphics.drawRect(55, 5, 40, 20);
+      child.graphics.beginFill(0xffffff, 0.5);
+      child.graphics.drawRect(105, 15, 40, 20);
       child.graphics.endFill();
       
-      child.graphics.beginFill(0x000099);
-      child.graphics.drawRect(105, 5, 40, 20);
+      child.graphics.beginFill(0x000099, 0.2);
+			child.graphics.lineStyle(2, 0x000000, 0.3);
+      child.graphics.drawRect(125, 25, 40, 20);
       child.graphics.endFill();
 
     }
